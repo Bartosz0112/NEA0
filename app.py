@@ -4,8 +4,12 @@ from chat import get_response
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
-def index_get():
+@app.route('/')
+def route_name():
+    return render_template('home.html')
+
+@app.route("/base", methods=["GET"])
+def base():
     return render_template("base.html")
 
 @app.route("/predict", methods=["POST"])
@@ -14,6 +18,9 @@ def predict():
     response = get_response(text)
     message = {"answer": response}
     return jsonify(message)
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
